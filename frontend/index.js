@@ -38,14 +38,7 @@ function updateLeaderboard() {
                 <a href="#" onclick="window.open('https://leetcode.com/${student.username}', '_blank')">${student.username}</a>
    
             </td>
-            <td class="p-4">
-    ${student.totalSolved} 
-    &nbsp;
-    <span class="text-green-500">
-        <i class="fa fa-arrow-up"></i>
-    </span> 
-    ${Math.floor(student.totalSolved / 8) -Math.floor(student.totalSolved / 18)  }
-</td>
+            <td class="p-4">${student.totalSolved}</td>
             <td class="p-4 text-green-400">${student.easySolved}</td>
             <td class="p-4 text-yellow-400">${student.mediumSolved}</td>
             <td class="p-4 text-red-400">${student.hardSolved}</td>
@@ -101,4 +94,3 @@ function sortTable(attribute) {
 
 // Initialize students and leaderboard
 initializeStudents();
-

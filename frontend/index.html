@@ -7,18 +7,10 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
-
-    <script src="https://cdn.jsdelivr.net/npm/apexcharts@latest"></script>
     <title>Leaderboard</title>
 </head>
 
 <body class="bg-gray-900 text-white p-5">
-    <header class="bg-gray-800 py-4 shadow-md">
-        <div class="container mx-auto text-center">
-            <h1 class="text-4xl font-bold text-green-400">TBPPP Leaderboard</h1>
-            <p class="text-gray-400 mt-2">Track and compare your problem-solving progress</p>
-        </div>
-    </header>
 
     <div class="container mx-auto my-10">
         <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -56,7 +48,7 @@
 
             <!-- Right Side: Top 3 Users and Add User Form -->
             <div class="bg-gray-800 rounded-lg shadow-md p-6">
-                <h2 class="text-3xl mt-4 mb-4 text-center">This week champs</h2>
+                <h2 class="text-3xl mt-4 mb-4 text-center">Top 3 Solvers</h2>
                 <ul id="top-solvers" class="list-disc pl-5 ">
                     <!-- Top solvers will be dynamically added here -->
                 </ul>
@@ -67,33 +59,6 @@
                         <button onclick="addStudent()" class="p-3 bg-blue-600 text-white rounded transition duration-300 hover:bg-blue-500">Add User</button>
                     </div>
                 </div> -->
-                <div class="bg-gray-800 rounded-lg shadow-md p-6">
-                    <ul id="top-solvers" class="list-disc pl-5 mb-6">
-                        <!-- Top solvers will be dynamically added here -->
-                    </ul>
-                    <h2 class="text-2xl mt-4 mb-4 text-center">Overall Problem Distribution</h2>
-                    <center><h2>Week 1</h2></center>
-                    <div id="problemsPieChart1" class="w-full max-w-xs mx-auto text-white"></div>
-
-                    <center><h2>Week 2</h2></center>
-                    <div id="problemsPieChart2" class="w-full max-w-xs mx-auto text-white"></div>
-
-                    <center><h2>Week 3</h2></center>
-                    <div id="problemsPieChart3" class="w-full max-w-xs mx-auto text-white"></div>
-
-                    <h2 class="text-2xl mt-4 mb-4 text-center">GitHub Stats Overview</h2>
-                    <center><h2>Pull requests </h2></center>
-                    <div id="prChart" class="bg-gray-800 p-6 rounded-lg shadow-md mb-6"></div>
-
-                    <!-- Container for Lines of Code chart -->
-                    <center><h2>Lines of codes</h2></center>
-                    <div id="locChart" class="bg-gray-800 p-6 rounded-lg shadow-md mb-6"></div>
-            
-                    <!-- Container for Forks chart -->
-                    <center><h2>Forks on github</h2></center>
-                    <div id="forkChart" class="bg-gray-800 p-6 rounded-lg shadow-md"></div>
-                </div>
-                
             </div>    
                 
                 
@@ -102,219 +67,7 @@
         </div>
     </div>
 
-    <script src="index.js">
-        
-    </script>
-    <script>
-
-
-        var options1 = {
-            series: [33590, 37811, 5580], 
-            chart: {
-                type: 'pie',
-                width: '100%'
-            },
-            labels: ['Easy', 'Medium', 'Hard'],
-            colors: ['#4CAF50', '#FFC107', '#F44336'],
-            legend: {
-                labels: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] 
-                }
-            },
-            tooltip: {
-                theme: 'dark'
-            },
-            dataLabels: {
-                style: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] 
-                }
-            }
-        };
-
-
-
-        var options2 = {
-            series: [35590, 41751, 6583], // Example data
-            chart: {
-                type: 'pie',
-                width: '100%'
-            },
-            labels: ['Easy', 'Medium', 'Hard'],
-            colors: ['#4CAF50', '#FFC107', '#F44336'],
-            legend: {
-                labels: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] // This will change legend text color to white
-                }
-            },
-            tooltip: {
-                theme: 'dark' // This will make the tooltip text white as well
-            },
-            dataLabels: {
-                style: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] // This will make the data labels white
-                }
-            }
-        };
-
-        var options3 = {
-            series: [36966, 47751, 7683], // Example data
-            chart: {
-                type: 'pie',
-                width: '100%'
-            },
-            labels: ['Easy', 'Medium', 'Hard'],
-            colors: ['#4CAF50', '#FFC107', '#F44336'],
-            legend: {
-                labels: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] // This will change legend text color to white
-                }
-            },
-            tooltip: {
-                theme: 'dark' // This will make the tooltip text white as well
-            },
-            dataLabels: {
-                style: {
-                    colors: ['#FFFFFF','#FFFFFF','#FFFFFF'] // This will make the data labels white
-                }
-            }
-        };
-
-        
-        // Pull Requests chart
-        var prOptions = {
-            series: [{
-                name: 'Pull Requests',
-                data: [32, 458] // Previous and current data
-            }],
-            chart: {
-                type: 'bar',
-                height: 350,
-                background: '#2d3748'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '50%',
-                    borderRadius: 8
-                }
-            },
-            colors: ['#4ade80'], // Green color
-            xaxis: {
-                categories: ['Before', 'Now'],
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            legend: {
-                labels: {
-                    colors: '#ffffff'
-                }
-            }
-        };
-        new ApexCharts(document.querySelector("#prChart"), prOptions).render();
-
-        // Lines of Code chart
-        var locOptions = {
-            series: [{
-                name: 'Lines of Code',
-                data: [5187, 35089] // Previous and current data
-            }],
-            chart: {
-                type: 'bar',
-                height: 350,
-                background: '#2d3748'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '50%',
-                    borderRadius: 8
-                }
-            },
-            colors: ['#facc15'], // Yellow color
-            xaxis: {
-                categories: ['Before', 'Now'],
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            legend: {
-                labels: {
-                    colors: '#ffffff'
-                }
-            }
-        };
-        new ApexCharts(document.querySelector("#locChart"), locOptions).render();
-
-        // Forks chart
-        var forkOptions = {
-            series: [{
-                name: 'Forks',
-                data: [29, 512] // Previous and current data
-            }],
-            chart: {
-                type: 'bar',
-                height: 350,
-                background: '#2d3748'
-            },
-            plotOptions: {
-                bar: {
-                    horizontal: false,
-                    columnWidth: '50%',
-                    borderRadius: 8
-                }
-            },
-            colors: ['#38bdf8'], // Blue color
-            xaxis: {
-                categories: ['Before', 'Now'],
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            yaxis: {
-                labels: {
-                    style: {
-                        colors: '#ffffff'
-                    }
-                }
-            },
-            legend: {
-                labels: {
-                    colors: '#ffffff'
-                }
-            }
-        };
-        new ApexCharts(document.querySelector("#forkChart"), forkOptions).render();
-    
-        var chart = new ApexCharts(document.querySelector("#problemsPieChart1"), options1);
-        chart.render();
-        var chart = new ApexCharts(document.querySelector("#problemsPieChart2"), options2);
-        chart.render();
-        var chart = new ApexCharts(document.querySelector("#problemsPieChart3"), options3);
-        chart.render();
-    
-    </script>
+    <script src="index.js"></script>
 </body>
 
 </html>
-
